@@ -9,7 +9,7 @@ Pequeno serviço em Go que fica consultando o `/health` de outra aplicação e, 
 | `HEALTH_URL`     | sim         | –      | URL do health check (GET)                   |
 | `WEBHOOK_URL`    | sim         | –      | URL chamada enquanto estiver saudável       |
 | `WEBHOOK_METHOD` | não         | `POST` | Método HTTP do webhook                      |
-| `CHECK_INTERVAL` | não         | `30s`  | Intervalo entre ciclos (ex.: `10s`, `1m`)   |
+| `CHECK_INTERVAL` | não         | `1m`   | Intervalo entre ciclos (ex.: `10s`, `1m`)   |
 | `REQUEST_TIMEOUT`| não         | `10s`  | Timeout das requisições                     |
 | `LOG_LEVEL`      | não         | `info` | `debug` mostra cada chamada                 |
 
@@ -19,7 +19,7 @@ Pequeno serviço em Go que fica consultando o `/health` de outra aplicação e, 
 docker run -d --restart unless-stopped \
   -e HEALTH_URL=https://minha-app.com/health \
   -e WEBHOOK_URL=https://meu-webhook.com/ping \
-  -e CHECK_INTERVAL=30s \
+  -e CHECK_INTERVAL=1m \
   ghcr.io/carloslauriano/uptime-reative:latest
 ```
 

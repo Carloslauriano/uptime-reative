@@ -31,7 +31,7 @@ func loadConfig() (config, error) {
 		return c, errors.New("HEALTH_URL and WEBHOOK_URL are required")
 	}
 	var err error
-	if c.Interval, err = durationEnv("CHECK_INTERVAL", 30*time.Second); err != nil {
+	if c.Interval, err = durationEnv("CHECK_INTERVAL", time.Minute); err != nil {
 		return c, err
 	}
 	if c.Timeout, err = durationEnv("REQUEST_TIMEOUT", 10*time.Second); err != nil {
@@ -54,7 +54,7 @@ func durationEnv(key string, def time.Duration) (time.Duration, error) {
 	}
 	d, err := time.ParseDuration(v)
 	if err != nil || d <= 0 {
-		return 0, fmt.Errorf("invalid %s %q: use a positive duration like 30s", key, v)
+		return 0, fmt.Errorf("invalid %s %q: use a positive duration like 1m", key, v)
 	}
 	return d, nil
 }
